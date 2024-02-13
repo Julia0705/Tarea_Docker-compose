@@ -6,6 +6,7 @@
 #El motor de la base de datos de mongo
 #La interfaz para gestionar la base de datos con mongo-express
 
+#Configuración de mi-mongo
 services:
   mi-mongo:
     image: mongo
@@ -14,3 +15,22 @@ services:
       - mi-red
     volumes:
       - mi-volumen:/data/db
+
+#Configuración de mongo-express
+mi-mongo-express:
+  container_name: mi-mongo-express
+  image: mongo-express #Imagen de mongo-express
+  networks:
+    - mi-red
+  ports:
+    - "8081:8081"
+  environment:
+    ME_CONFIG_MONGODB_SERVER: mi-mongo
+
+#Definición de redes
+networks:
+  mi-red:
+
+#Definición de volumenes
+volumes:
+  mi-volumen:
