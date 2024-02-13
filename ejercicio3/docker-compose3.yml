@@ -1,0 +1,16 @@
+#Genera un archivo docker-compose que cuando se ejecute levante el sistema preguntado
+#en el ejercicio opcional 3
+
+#Una red
+#Un volumen
+#El motor de la base de datos de mongo
+#La interfaz para gestionar la base de datos con mongo-express
+
+services:
+  mi-mongo:
+    image: mongo
+    container_name: mi-mongo
+    networks:
+      - mi-red
+    volumes:
+      - mi-volumen:/data/db
