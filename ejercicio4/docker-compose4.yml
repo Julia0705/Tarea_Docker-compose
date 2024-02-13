@@ -1,0 +1,38 @@
+#Genera un archivo docker-compose que cuando se ejecute levante el sistema preguntado
+#en el ejercicio opcional 4
+
+#Una red
+#Un volumen
+#El motor de la base de datos mysql
+#La interfaz para gestionar la base de datos con phpmyadmin
+
+#Configuración de MYSQL
+services:
+  mysql:
+    image: mysql
+    container_name: mi-mysql
+  volumes:
+    - mi-mysql-vol:/var/lib/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+  networks:
+    - mi-mysql-red
+
+  #Configuración del servicio PHPMyAdmin
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: mi-dashboard
+    environment:
+      PMA_HOST: mi-mysql
+    networks:
+      - mi-mysqlred
+    ports:
+      - "8080:80"
+
+#Definición de la red "mi-mysqlred"
+networks:
+  mi-mysqlred:
+
+#Definición del volumen "mi-mysql-vol"
+volumes:
+  mi-mysql-vol:
