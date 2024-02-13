@@ -14,16 +14,16 @@ services:
   volumes:
     - mi-mysql-vol:/var/lib/mysql
   environment:
-    MYSQL_ROOT_PASSWORD: password
+    MYSQL_ROOT_PASSWORD: password #Contraseña de root para MYSQL (ejemplo)
   networks:
     - mi-mysql-red
 
-  #Configuración del servicio PHPMyAdmin
+  #Configuración del servicio PhpMyAdmin
   phpmyadmin:
     image: phpmyadmin
     container_name: mi-dashboard
     environment:
-      PMA_HOST: mi-mysql
+      PMA_HOST: mi-mysql #Host que se conecta a PhpMyAdmin
     networks:
       - mi-mysqlred
     ports:
